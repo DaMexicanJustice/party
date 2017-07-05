@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <link href="party.css" rel="stylesheet" type="text/css"/>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    </head>
+    <body ng-app="myApp">
+
+        <div ng-controller="myController as ctrl" ng-init="ctrl.getFirst100Followers(); ctrl.getNext100Followers();">
+
+
+            <div class="container">
+                <img id="logo" class="img-responsive" src="logo.png" alt=""/>
+                <table id="members" class="table table-striped">
+                    <tr>
+                        <th>
+                        </th>
+                        <th>
+                            Username
+                        </th>
+                        <th>
+                            Joined on
+                        </th>
+                        <th>
+                            Bio
+                        </th>
+                        <th>
+                            Search
+                            <input type="text" placeholder="username" ng-model="user">
+                        </th>
+                    </tr>
+                    <tr ng-repeat="follower in ctrl.followers.concat(ctrl.next100Followers) | filter : user">
+                        <td>
+                            <i class="glyphicon glyphicon-user"></i>
+                        </td>
+                        <td>
+                            <a ng-href="https://www.twitch.tv/{{follower.user.name}}">{{follower.user.name}}</a>
+                        </td>
+                        <td ng-bind="follower.created_at | date:'medium'">
+                        </td>
+                        <td ng-bind="follower.user.bio">
+                        </td>
+                        <td>
+                            <img ng-init="ctrl.getRandomJob()" ng-src="jobs/{{ctrl.someJob}}.png" />
+                        </td>
+                    </tr>
+                </table>
+                
+            </div>
+
+        </div>
+
+        <script>
+
+            var app = angular.module("myApp", []);
+
+            app.controller("myController", ["myFactory", function (myFactory) {
+                    var self = this;
+                    self.test = "Hello from myController";
+                    self.factoryTest = myFactory.testMethod();
+                    self.followers = [];
+                    self.next100Followers = [];
+                    self.getFirst100Followers = function () {
+                        myFactory.getFirst100Followers().then(function (response) {
+                            self.followers = response.data.follows;
+                        });
+                    };
+                    self.getNext100Followers = function () {
+                        myFactory.getNext100Followers().then(function (response) {
+                            self.next100Followers = response.data.follows;
+                        });
+                    };
+
+                }]);
+
+            app.factory("myFactory", ['$http', function ($http) {
+                    var factory = {};
+                    factory.testMethod = function () {
+                        return "Hello from factory";
+                    },
+                    factory.getFirst100Followers = function () {
+                        return $http.get("https://api.twitch.tv/kraken/channels/damexicanjustice/follows?client_id=kokyco38mg96als9lyu4vu7hvlnge2&limit=100");
+                    },
+                    factory.getNext100Followers = function () {
+                        return $http.get("https://api.twitch.tv/kraken/channels/damexicanjustice/follows?client_id=kokyco38mg96als9lyu4vu7hvlnge2&limit=100&offset=100");
+                    };
+                    return factory;
+                }]);
+
+        </script>
+
+
+    </body>
+</html>

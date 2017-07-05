@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<!--
+        Aerial by HTML5 UP
+        html5up.net | @ajlkn
+        Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+    <head>
+        <title>Adult Game Gems</title>
+        <link rel="shortcut icon" type="image/png" href="assets/css/images/favicon.gif"/>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+        <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    </head>
+    <body class="loading">
+        <div id="wrapper">
+            <div id="bg"></div>
+            <div id="overlay"></div>
+            <div id="main">
+
+                <!-- Header -->
+                <header id="header">
+                    <h1>Guna's Secret Stash</h1>
+                    <p>Adult entrepreneur &nbsp;&bull;&nbsp; Mexican &nbsp;&bull;&nbsp; Delivering adult games</p>
+                    <!--						<nav>
+                                                                            <ul>
+                                                                                    <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                                                                                    <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                                                                                    <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+                                                                                    <li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+                                                                                    <li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+                                                                            </ul>
+                                                                    </nav>-->
+                    <a href='https://www.dropbox.com/s/30wojd65ao0gk46/a_games.zip?dl=0'><img id='chest' src="assets/css/images/chest.png" alt=""/></a>
+                    <a href="https://www.google.dk">Google test</a>
+                    <p>Version 1.0</p>
+                </header>
+
+                <!-- Footer -->
+                <footer id="footer">
+                    <span class="copyright">&copy; DMJ. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>
+                </footer>
+
+            </div>
+        </div>
+        <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+        <script>
+            window.onload = function () {
+                document.body.className = '';
+            }
+            window.ontouchmove = function () {
+                return false;
+            }
+            window.onorientationchange = function () {
+                document.body.scrollTop = 0;
+            }
+
+            $(document).ready(function () {
+
+                $("#chest").mouseover(function () {
+                    $("#chest").attr('title', 'Click here to download games');
+                    $("#chest").css("opacity", 1.0);
+                });
+
+                $("#chest").mouseleave(function () {
+                    $("#chest").css("opacity", 0.5);
+                });
+
+            });
+        </script>
+    </body>
+</html>

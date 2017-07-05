@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ticker</title>
+        <meta name="robots" content="noindex, nofollow">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="/jquery.scrollbox.js"></script>
+        <style>
+            img {
+                width: 17px;
+                height: 17px;
+                vertical-align: top;
+            }
+            .scroll-text {
+                width: 400px;
+                height: 1.5em;
+                overflow: hidden;
+                margin: 0;
+                padding: 0;
+            }
+            .scroll-text ul {
+                width: 800px;
+                height: 100px;
+                overflow: hidden;
+                margin: 0;
+                padding: 0;
+            }
+            .scroll-text ul li {
+                height: 1.5em;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="demo" class="scroll-text">
+            <ul>
+                <li>aleqss95: $2.14 | <img src="bit.gif"> 0</li>
+                <li>at0micpunkk: $55.00 | <img src="bit.gif"> 0</li>
+                <li>boundingray: $100.00 | <img src="bit.gif"> 0</li>
+                <li>DaMexicanJustice: $26.00 | <img src="bit.gif"> 0</li>
+                <li>Luc: $2.00 | <img src="bit.gif"> 0</li>
+                <li>P1ywood: $25.15 | <img src="bit.gif"> 0</li>
+                <li>pionner121: $5.00 | <img src="bit.gif"> 0</li>
+                <li>Sin_Dragon: $26.00 | <img src="bit.gif"> 0</li>
+                <li>TroubledPlum: $6.50 | <img src="bit.gif"> 0</li>
+                <li>zpltwitchzpl: $5.00 | <img src="bit.gif"> 0</li>
+            </ul>
+        </div>
+
+        <button id="button">Button</button>
+
+        <script>
+            $(function () {
+                $('#demo').scrollbox();
+            });
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                /*
+                 $("button").click(function () {
+                 $.get("http://pokeapi.co/api/v2/pokemon/1", function (data, status) {
+                 alert("Data: " + data + "\nStatus: " + status);
+                 });
+                 });
+                 */
+
+                $("button").click(function () {
+
+                    $.ajax({
+                        type: 'GET',
+                        url: 'https://streamlabs.com/api/v1.0/donations',
+                        xhrFields: {
+                            // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
+                            // This can be used to set the 'withCredentials' property.
+                            // Set the value to 'true' if you'd like to pass cookies to the server.
+                            // If this is enabled, your server must respond with the header
+                            // 'Access-Control-Allow-Credentials: true'.
+                            withCredentials: false
+                        },
+                        headers: {
+                            // Set any custom headers here.
+                            // If you set any non-simple headers, your server must include these
+                            // headers in the 'Access-Control-Allow-Headers' response header.
+                            access_token: 'cH7g3SB125099LeciuXcHMaEXmKum4a6Utu0sax',
+                        },
+                        success: function () {
+                            alert("Something went well")
+                        },
+                        error: function () {
+                            // Here's where you handle an error response.
+                            // Note that if the error was due to a CORS issue,
+                            // this function will still fire, but there won't be any additional
+                            // information about the error.
+                        }
+                    });
+
+
+                });
+
+            });
+        </script>
+
+    </body>
+</html>

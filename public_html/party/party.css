@@ -1,0 +1,31 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 20, 2016, 2:56:51 PM
+    Author     : Guna
+*/
+
+#logo {
+    
+    margin-top: 10px;
+    
+}
+
+#members > tbody > tr:nth-child(1) {
+    background-color: white;
+}
+
+body > div > div.container > table > tbody > tr:nth-child(odd) {
+    background-color : rgba(152, 251, 152, 0.4);
+}
+
+#members > tbody > tr > td:nth-child(2) {
+    font-weight:bold;
+}
+
+#members > tbody > tr > td:nth-child(4) {
+    font-size: 11px;
+}
